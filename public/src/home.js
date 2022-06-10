@@ -9,9 +9,9 @@ function getTotalAccountsCount(accounts) {
 function getBooksBorrowedCount(books) {
   //Refactored code to avoid using FOR Loop
   const result = books.reduce((total, book) => {
-  const {borrows} = book
-  if (borrows[0].returned === false) {total++} 
-  return total
+    const {borrows} = book
+    if (borrows[0].returned === false) {total++} 
+    return total
   }, 0)
   return result
   
