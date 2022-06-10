@@ -11,7 +11,17 @@ function sortAccountsByLastName(accounts) {
 }
 
 function getTotalNumberOfBorrows(account, books) {
+  //Refactored code, previously I was using FOR Loops to accomplish the same
+  const result = books.reduce((total, book) => {
+    const {borrows} = book
+    const borrowed = borrows.filter((borrow) => account.id === borrow.id).length
+    return total + borrowed
+  }, 0)
+  return result
   
+  //Below is my previous FOR loop code with same results
+
+  /*
   const allIds = []
   for (let i = 0; i < books.length; i++) {
     for (let x = 0; x < books[i].borrows.length; x++) {
@@ -20,6 +30,7 @@ function getTotalNumberOfBorrows(account, books) {
   }
 
   return allIds.filter((collectedIds) => collectedIds === account.id).length
+  */
 }
 
 function getBooksPossessedByAccount(account, books, authors) { 
