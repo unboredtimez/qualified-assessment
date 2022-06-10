@@ -7,6 +7,16 @@ function getTotalAccountsCount(accounts) {
 }
 
 function getBooksBorrowedCount(books) {
+  //Refactored code to avoid using FOR Loop
+  let result = books.reduce((total, book) => {
+  const {borrows} = book
+  if (borrows[0].returned === false) {total++} 
+  return total
+  }, 0)
+  return result
+  
+  //Below is previous code using FOR Loop
+  /*
   const checkedOut = []
   for (let i = 0; i < books.length; i++) {
     const [returnStatus] = books[i].borrows
@@ -15,8 +25,8 @@ function getBooksBorrowedCount(books) {
     } 
   }
   return checkedOut.length
+  */
 }
-
 
 
 function getMostCommonGenres(books) {
