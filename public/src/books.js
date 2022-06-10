@@ -7,6 +7,21 @@ function findBookById(books, id) {
 }
 
 function partitionBooksByBorrowedStatus(books) {
+  //Refactored solution without using a FOR Loop
+  const checkedOut = []
+  const available = []
+  
+  const result = books.reduce((total, book) => {
+  const {borrows} = book
+  borrows[0].returned ? available.push(book) : checkedOut.push(book)
+  total.push(checkedOut, available)
+  return total
+  
+  }, [])
+  return result
+  
+  //Below is my old solution using FOR loops
+  /*
   const checkedOut = []
   const available = []
   for (let i = 0; i < books.length; i++) {
@@ -16,6 +31,7 @@ function partitionBooksByBorrowedStatus(books) {
   const result = []
   result.push(available, checkedOut)
   return result 
+  */
 }
 
 function getBorrowersForBook(book, accounts) {
