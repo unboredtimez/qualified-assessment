@@ -35,13 +35,13 @@ function getTotalNumberOfBorrows(account, books) {
 
 function getBooksPossessedByAccount(account, books, authors) { 
   const result = books.reduce((total, book) => {
-  const {borrows} = book
-  const checkedOut = borrows.filter((borrow) => account.id === borrow.id && !borrow.returned)
-  if (checkedOut.length > 0) {
-    const author = authors.find((author) => book.authorId === author.id)
-    total.push({...book, author, borrows: checkedOut})
-  }
-  return total
+    const {borrows} = book
+    const checkedOut = borrows.filter((borrow) => account.id === borrow.id && !borrow.returned)
+    if (checkedOut.length > 0) {
+      const author = authors.find((author) => book.authorId === author.id)
+      total.push({...book, author, borrows: checkedOut})
+    }
+    return total
   }, [])
   return result
 }
